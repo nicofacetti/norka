@@ -25,8 +25,12 @@
 <span>NÖRKA</span>
 </div>
 
+<div class="menu-toggle" id="menu-toggle">
+☰
+</div>
+
 <nav>
-<ul class="nav-links">
+<ul class="nav-links" id="nav-links">
 
 <li><a href="#coleccion">Colección</a></li>
 <li><a href="#concepto">Concepto</a></li>
@@ -182,6 +186,16 @@ Entregas a domicilio en Salta Capital
 
 </footer>
 
+<script>
+
+const toggle = document.getElementById("menu-toggle");
+const nav = document.getElementById("nav-links");
+
+toggle.addEventListener("click", () => {
+nav.classList.toggle("active");
+});
+
+</script>
 
 </body>
 </html>
