@@ -1,119 +1,74 @@
 :root{
-
---vino:#5b1a23;
---kraft:#f4f1ed;
---texto:#1a1a1a;
---blanco:#ffffff;
-
+  --vino:#5b1a23;
+  --kraft:#f4f1ed;
+  --texto:#1a1a1a;
+  --blanco:#ffffff;
 }
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body{
-
-font-family:'Inter',sans-serif;
-
-background:var(--kraft);
-
-color:var(--texto);
-
-line-height:1.6;
-
+  font-family:'Inter',sans-serif;
+  background:var(--kraft);
+  color:var(--texto);
+  line-height:1.6;
 }
-
-
 
 /* NAVBAR */
 
 .navbar{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:20px 40px;
-
-background:var(--blanco);
-
-border-bottom:1px solid #eee;
-
-position:sticky;
-
-top:0;
-
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 40px;
+  background:var(--blanco);
+  border-bottom:1px solid #eee;
+  position:sticky;
+  top:0;
 }
-
-
 
 .logo{
-
-display:flex;
-
-align-items:center;
-
-gap:10px;
-
-font-weight:600;
-
-letter-spacing:2px;
-
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:600;
+  letter-spacing:2px;
 }
 
-
-
 .logo img{
-height: 76px;px;
+  height: 76px;px;
 }
 
 
 
 .nav-links{
-
-list-style:none;
-
-display:flex;
-
-gap:30px;
-
+  list-style:none;
+  display:flex;
+  gap:30px;
 }
-
-
 
 .nav-links a{
-
-text-decoration:none;
-
-color:var(--texto);
-
-font-size:14px;
-
-letter-spacing:1px;
-
+  text-decoration:none;
+  color:var(--texto);
+  font-size:14px;
+  letter-spacing:1px;
 }
 
 
-
-/* HERO */
-
 /* ===== HERO ===== */
-
 .hero {
   height: 90vh;
   background-image: url("../assets/hero.png");
   background-size: cover;
   background-position: center;
-
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-
   color: white;
 }
 
@@ -145,13 +100,10 @@ letter-spacing:1px;
   display: inline-block;
   margin-top: 30px;
   padding: 12px 26px;
-
   background: var(--vino);
   color: white;
-
   text-decoration: none;
   letter-spacing: 1px;
-
   transition: 0.3s;
 }
 
@@ -159,189 +111,106 @@ letter-spacing:1px;
   opacity: 0.85;
 }
 
-
 /* BOTON */
 
 .btn{
-
-display:inline-block;
-
-margin-top:30px;
-
-padding:12px 26px;
-
-background:var(--vino);
-
-color:white;
-
-text-decoration:none;
-
-letter-spacing:1px;
-
-transition:.3s;
-
+  display:inline-block;
+  margin-top:30px;
+  padding:12px 26px;
+  background:var(--vino);
+  color:white;
+  text-decoration:none;
+  letter-spacing:1px;
+  transition:.3s;
 }
-
-
 
 .btn:hover{
-
-opacity:.85;
-
+  opacity:.85;
 }
-
-
 
 /* COLECCION */
 
 .coleccion{
-
-padding:100px 40px;
-
-text-align:center;
-
+  padding:100px 40px;
+  text-align:center;
 }
-
-
 
 .coleccion h2{
-
-font-family:'Playfair Display',serif;
-
-margin-bottom:50px;
-
-font-size:34px;
-
+  font-family:'Playfair Display',serif;
+  margin-bottom:50px;
+  font-size:34px;
 }
-
-
 
 .grid-productos{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-
-gap:35px;
-
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:35px;
 }
-
-
 
 .producto{
-
-background:white;
-
-padding:25px;
-
-transition:.3s;
-
+  background:white;
+  padding:25px;
+  transition:.3s;
 }
-
-
 
 .producto:hover{
-
-transform:translateY(-6px);
-
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
-
+  transform:translateY(-6px);
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
 }
-
-
 
 .producto-img{
-
-height:220px;
-
-background:#ddd;
-
-margin-bottom:15px;
-
+  height:220px;
+  background:#ddd;
+  margin-bottom:15px;
 }
-
-
 
 /* CONCEPTO */
 
 .concepto{
-
-padding:90px 40px;
-
-max-width:700px;
-
-margin:auto;
-
-text-align:center;
-
+  padding:90px 40px;
+  max-width:700px;
+  margin:auto;
+  text-align:center;
 }
-
-
 
 /* PERSONALIZADOS */
 
 .personalizados{
-
-padding:90px 40px;
-
-background:white;
-
-text-align:center;
-
+  padding:90px 40px;
+  background:white;
+  text-align:center;
 }
-
-
 
 /* CONTACTO */
 
 .contacto{
-
-padding:100px 40px;
-
-text-align:center;
-
+  padding:100px 40px;
+  text-align:center;
 }
-
-
 
 .entrega{
-
-margin-top:20px;
-
-font-size:14px;
-
-opacity:.7;
-
+  margin-top:20px;
+  font-size:14px;
+  opacity:.7;
 }
-
-
 
 /* FOOTER */
 
 footer{
-
-text-align:center;
-
-padding:40px;
-
-background:white;
-
-margin-top:40px;
-
-font-size:14px;
-
+  text-align:center;
+  padding:40px;
+  background:white;
+  margin-top:40px;
+  font-size:14px;
 }
 
 /* MENU HAMBURGUESA */
 
 .menu-toggle{
-
-display:none;
-font-size:28px;
-cursor:pointer;
-
+  display:none;
+  font-size:28px;
+  cursor:pointer;
 }
-
 
 
 /* MOBILE */
@@ -349,36 +218,25 @@ cursor:pointer;
 @media (max-width:768px){
 
 .navbar{
-padding:20px;
+  padding:20px;
 }
 
 .menu-toggle{
-display:block;
+  display:block;
 }
 
 .nav-links{
-
-position:absolute;
-
-top:70px;
-right:0;
-
-background:white;
-
-width:100%;
-
-flex-direction:column;
-
-align-items:center;
-
-gap:25px;
-
-padding:30px;
-
-display:none;
-
+  position:absolute;
+  top:70px;
+  right:0;
+  background:white;
+  width:100%;
+  flex-direction:column;
+  align-items:center;
+  gap:25px;
+  padding:30px;
+  display:none;
 border-top:1px solid #eee;
-
 }
 
 .nav-links.active{
@@ -432,11 +290,9 @@ display:flex;
   position: fixed;
   bottom: 25px;
   right: 25px;
-
   display: flex;
   flex-direction: column;
   gap: 12px;
-
   z-index: 1000;
 }
 
@@ -445,16 +301,11 @@ display:flex;
 .social-float img {
   width: 42px;
   height: 42px;
-
   padding: 8px;
   border-radius: 50%;
-
   background: white;
-
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-
   cursor: pointer;
-
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -462,6 +313,5 @@ display:flex;
 
 .social-float img:hover {
   transform: scale(1.12);
-
   box-shadow: 0 6px 16px rgba(0,0,0,0.25);
 }
