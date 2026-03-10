@@ -315,3 +315,57 @@ display:flex;
   transform: scale(1.12);
   box-shadow: 0 6px 16px rgba(0,0,0,0.25);
 }
+
+/* ===== LOOKBOOK CAROUSEL ===== */
+
+.lookbook-carousel{
+  position:relative;
+  max-width:1100px;
+  margin:50px auto;
+  overflow:hidden;
+}
+
+.look-track{
+  display:flex;
+  gap:20px;
+  transition:transform .5s ease;
+}
+
+.look-track img{
+  width:33%;
+  height:420px;
+  object-fit:cover;
+  opacity:.6;
+  transform:scale(.9);
+  transition:.4s;
+}
+
+/* imagen central */
+
+.look-track img.active{
+  opacity:1;
+  transform:scale(1);
+}
+
+/* botones */
+
+.look-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,0.5);
+  color:white;
+  border:none;
+  font-size:28px;
+  padding:10px 16px;
+  cursor:pointer;
+  z-index:2;
+}
+
+.look-btn.prev{
+  left:10px;
+}
+
+.look-btn.next{
+  right:10px;
+}

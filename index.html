@@ -42,12 +42,17 @@
       </div>
   </section>
   <section class="lookbook">
-    <h2>Lookbook</h2>
-    <div class="lookbook-grid">
-      <img src="./assets/look1.jpg" alt="Look Norka">
-      <img src="./assets/look2.jpg" alt="Look Norka">
-      <img src="./assets/look3.jpg" alt="Look Norka">
-      <img src="./assets/look4.jpg" alt="Look Norka">
+    <h2>Lookbook</h2>      
+    <div class="lookbook-carousel">    
+      <button class="look-btn prev">&#10094;</button>    
+      <div class="look-track">    
+        <img src="./assets/look1.jpg" alt="Look Norka">
+        <img src="./assets/look2.jpg" alt="Look Norka">
+        <img src="./assets/look3.jpg" alt="Look Norka">
+        <img src="./assets/look4.jpg" alt="Look Norka">   
+        <img src="./assets/look5.jpg" alt="Look Norka">   
+      </div>
+      <button class="look-btn next">&#10095;</button>
     </div>
   </section>
   <section id="coleccion" class="coleccion">
@@ -150,5 +155,33 @@
       <img src="./assets/icons8-whatsapp-48.png" alt="WhatsApp">
     </a>
   </div>
+  <script>
+    const track = document.querySelector(".look-track");
+    const slides = document.querySelectorAll(".look-track img");
+    const next = document.querySelector(".next");
+    const prev = document.querySelector(".prev");
+    let index = 1;
+    function updateCarousel(){
+    slides.forEach(slide => slide.classList.remove("active"));
+    slides[index].classList.add("active");
+    const offset = (slides[index].offsetLeft - track.offsetWidth / 3);
+    track.style.transform = `translateX(-${offset}px)`;
+    }
+    next.addEventListener("click", () => {
+    index++;
+    if(index >= slides.length){
+    index = 0;
+    }
+    updateCarousel();
+    });
+    prev.addEventListener("click", () => {
+    index--;
+    if(index < 0){
+    index = slides.length - 1;
+    }
+    updateCarousel();
+    });
+    updateCarousel();
+  </script>
 </body>
 </html>
