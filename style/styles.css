@@ -21,15 +21,13 @@ body{
 /* NAVBAR */
 
 .navbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 40px;
-  background:var(--blanco);
-  border-bottom:1px solid #eee;
-  position:sticky;
-  top:0;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:20px 40px;
+position:relative;
 }
+
 
 .logo{
   display:flex;
@@ -40,7 +38,7 @@ body{
 }
 
 .logo img{
-  height: 76px;px;
+  height: 76px;
 }
 
 
@@ -210,39 +208,33 @@ footer{
   display:none;
   font-size:28px;
   cursor:pointer;
+margin-left:auto;
 }
+
 
 
 /* MOBILE */
 
 @media (max-width:768px){
 
-.navbar{
-  padding:20px;
-}
-
-.menu-toggle{
-  display:block;
-}
-
 .nav-links{
+  display:none;
   position:absolute;
   top:70px;
   right:0;
   background:white;
-  width:100%;
   flex-direction:column;
-  align-items:center;
-  gap:25px;
-  padding:30px;
-  display:none;
-border-top:1px solid #eee;
-}
+  width:200px;
+  padding:20px;
+  }
 
-.nav-links.active{
-display:flex;
-}
+  .nav-links.active{
+  display:flex;
+  }
 
+  .menu-toggle{
+  display:block;
+  }
 }
 
 .lookbook {
