@@ -42,15 +42,17 @@
       </div>
   </section>
   <section class="lookbook">
-    <h2>Lookbook</h2>      
-    <div class="lookbook-carousel">    
-      <button class="look-btn prev">&#10094;</button>    
-      <div class="look-track">    
-        <img src="./assets/look1.jpg" alt="Look Norka">
-        <img src="./assets/look2.jpg" alt="Look Norka">
-        <img src="./assets/look3.jpg" alt="Look Norka">
-        <img src="./assets/look4.jpg" alt="Look Norka">   
-        <img src="./assets/look5.jpg" alt="Look Norka">   
+    <h2>Lookbook</h2>
+    <div class="lookbook-carousel">
+      <button class="look-btn prev">&#10094;</button>
+      <div class="look-viewport">
+        <div class="look-track">
+          <img src="./assets/look2.jpg" alt="Look Norka">
+          <img src="./assets/look3.jpg" alt="Look Norka">
+          <img src="./assets/look4.jpg" alt="Look Norka">   
+          <img src="./assets/look5.jpg" alt="Look Norka"> 
+          <img src="./assets/look1.jpg" alt="Look Norka">
+        </div>
       </div>
       <button class="look-btn next">&#10095;</button>
     </div>
@@ -160,30 +162,65 @@
     const slides = document.querySelectorAll(".look-track img");
     const next = document.querySelector(".next");
     const prev = document.querySelector(".prev");
-    let index = 1;
-    function updateCarousel(){
-    slides.forEach(slide => slide.classList.remove("active"));
-    slides[index].classList.add("active");   
-    let offset = slides[index].offsetLeft - track.parentElement.offsetWidth / 3;   
-    /* evitar desplazamiento negativo */
-    if(offset < 0){
-      offset = 0;
+    let index = 0;
+    let visibleSlides = window.innerWidth < 768 ? 1 : 3;
+    function slideWidth() {
+      return slides[0].getBoundingClientRect().width + 20; 
+      // 20 = gap del CSS
     }
-    track.style.transform = `translateX(-${offset}px)`;
+    function maxIndex() {
+      return slides.length - visibleSlides;
     }
+    function updateCarousel() {
+      const offset = index * slideWidth();
+      track.style.transform = `translateX(-${offset}px)`;
+      slides.forEach(slide => slide.classList.remove("active"));
+      if (visibleSlides === 3 && slides[index + 1]) {
+        slides[index + 1].classList.add("active");
+      }
+    }
+  
+    /* BOTONES */
     next.addEventListener("click", () => {
-    index++;
-    if(index >= slides.length){
-    index = 0;
-    }
-    updateCarousel();
+      if (index < maxIndex()) {
+        index++;
+        updateCarousel();
+      }
     });
     prev.addEventListener("click", () => {
-    index--;
-    if(index < 0){
-    index = slides.length - 1;
-    }
-    updateCarousel();
+      if (index > 0) {
+        index--;
+        updateCarousel();
+      }
+    });
+  
+    /* SWIPE TOUCH */
+    let startX = 0;
+    let endX = 0;
+    track.addEventListener("touchstart", e => {
+      startX = e.touches[0].clientX;
+    });
+    track.addEventListener("touchend", e => {
+      endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) {
+        if (index < maxIndex()) {
+          index++;
+          updateCarousel();
+        }
+      }
+      if (endX - startX > 50) {
+        if (index > 0) {
+          index--;
+          updateCarousel();
+        }
+      }
+    });
+  
+    /* RESPONSIVE */
+    window.addEventListener("resize", () => {
+      visibleSlides = window.innerWidth < 768 ? 1 : 3;
+      index = 0;
+      updateCarousel();
     });
     updateCarousel();
   </script>
