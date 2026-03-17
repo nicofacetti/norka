@@ -165,7 +165,7 @@ position:relative;
 /* CONCEPTO */
 
 .concepto{
-  padding:90px 40px;
+  padding:30px 40px;
   max-width:700px;
   margin:auto;
   text-align:center;
@@ -174,7 +174,7 @@ position:relative;
 /* PERSONALIZADOS */
 
 .personalizados{
-  padding:90px 40px;
+  padding:60px 40px;
   background:white;
   text-align:center;
 }
@@ -182,7 +182,7 @@ position:relative;
 /* CONTACTO */
 
 .contacto{
-  padding:100px 40px;
+  padding:60px 40px;
   text-align:center;
 }
 
@@ -330,13 +330,14 @@ touch-action:pan-y;
 }
 
 .look-track img{
-flex:0 0 33.33%;
+width:33.33%;
 height:420px;
 border-radius:6px;
 object-fit:cover;
 opacity:.6;
 transform:scale(.9);
 transition:.4s;
+flex-shrink:0;
 }
 
 .look-track img:hover{
@@ -376,10 +377,9 @@ right:-10px;
 @media (max-width:768px){
 
 .look-track img{
-flex:0 0 100%;
+width:100%;
 height:420px;
 opacity:1;
 transform:scale(1);
 }
-
 }
