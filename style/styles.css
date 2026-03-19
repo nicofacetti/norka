@@ -387,24 +387,24 @@ transform:scale(1);
 /* HERO CATÁLOGO */
 
 .catalog-hero {
-  height: 40vh;
+  height: 10vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("../assets/hero.png");;
+  background-color: #5b1a23; opacity: 80%;
   color: white;
   text-align: center;
 }
 
 .catalog-hero h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 48px;
+  font-size: 40px;
   letter-spacing: 6px;
 }
 
 .catalog-hero p {
-  margin-top: 10px;
+  margin-top: 8px;
   letter-spacing: 2px;
 }
 
