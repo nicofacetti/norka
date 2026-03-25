@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NÖRKA | Catálogo</title>
+    <link rel="stylesheet" href="../style/styles.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <img src="../assets/logo_norka-removebg.png" alt="Logo NÖRKA" loading="lazy">
+        </div>
+    </header>
+    <!-- GRID DE PRODUCTOS -->
+    <section class="catalogo">
+        <div class="product-card">
+            <img src="../assets/catalogo/militar.jpg" alt="Campera Nörka" loading="lazy">
+            <h3>Army</h3>
+            <p>Talle S</p>
+            <p>$52.000</p>
+        </div>
+        <div class="product-card">
+            <img src="../assets/catalogo/hoja_urbana.jpg" alt="Campera Nörka" loading="lazy">
+            <h3>Hoja Urbana</h3>
+            <p>Talle S</p>
+            <p>$39.000</p>
+        </div>
+        <div class="product-card">
+            <img src="../assets/catalogo/rider_web.jpg" alt="Campera Nörka" loading="lazy">
+            <h3>Rider</h3>
+            <p>Talle M</p>
+            <p>$35.000</p>
+        </div>
+        <div class="product-card">
+            <img src="../assets/catalogo/floral.jpg" alt="Campera Nörka" loading="lazy">
+            <h3>Saco Flora</h3>
+            <p>Talle S</p>
+            <p>$32.000</p>
+        </div>
+        <div class="product-card">
+            <img src="../assets/catalogo/dakota.jpg" alt="Campera Nörka" loading="lazy">
+            <h3>Dakota</h3>
+            <p>Talle L</p>
+            <p>$42.000</p>
+        </div>
+        <div class="product-card">
+            <img src="../assets/catalogo/parisina.jpg" alt="Campera Nörka" loading="lazy">
+            <h3>Parisina</h3>
+            <p>Talle M</p>
+            <p>$38.000</p>
+        </div>
+        <div class="product-card">
+            <img src="../assets/catalogo/black_shine.jpg" alt="Campera Nörka" loading="lazy">
+            <h3>Black Shine</h3>
+            <p>Talle L</p>
+            <p>$36.000</p>
+        </div>
+        <div class="product-card">
+            <img src="../assets/catalogo/glow_web.jpg" alt="Campera Nörka" loading="lazy">
+            <h3>Blazer Glow</h3>
+            <p>Talle S</p>
+            <p>$42.000</p>
+        </div>
+        <div class="product-card">
+            <img src="../assets/catalogo/wings_web.jpg" alt="Campera Nörka" loading="lazy">
+            <h3>Wings</h3>
+            <p>Talle S</p>
+            <p>$38.000</p>
+        </div>
+        <div class="product-card">
+            <img src="../assets/catalogo/geonude_web.jpg" alt="Campera Nörka" loading="lazy">
+            <h3>Geo-Nude</h3>
+            <p>Talle M</p>
+            <p>$36.000</p>
+        </div>
+        <div class="product-card">
+            <img src="../assets/catalogo/encanto.jpg" alt="Campera Nörka" loading="lazy">
+            <h3>Encanto Verde</h3>
+            <p>Talle L</p>
+            <p>$29.000</p>
+        </div>
+        <div class="product-card">
+            <img src="../assets/catalogo/salvaje.jpg" alt="Campera Nörka" loading="lazy">
+            <h3>Salvaje</h3>
+            <p>Talle M</p>
+            <p>$28.000</p>
+        </div>
+        <div class="product-card">
+            <img src="../assets/catalogo/eclipse.jpg" alt="Campera Nörka" loading="lazy">
+            <h3>Eclipse</h3>
+            <p>Talle M</p>
+            <p>$28.000</p>
+        </div>
+        <div class="product-card">
+            <img src="../assets/catalogo/perla.jpg" alt="Campera Nörka" loading="lazy">
+            <h3>Perla</h3>
+            <p>Talle M</p>
+            <p>$46.000</p>
+        </div>
+        <div class="product-card">
+            <img src="../assets/catalogo/zebra.jpg" alt="Campera Nörka" loading="lazy">
+            <h3>Zebra</h3>
+            <p>Talle S</p>
+            <p>$39.500</p>
+        </div>
+        <div class="product-card">
+            <img src="../assets/catalogo/bicolor.jpg" alt="Campera Nörka" loading="lazy">
+            <h3>Marrón Bicolor</h3>
+            <p>Talle M</p>
+            <p>$40.000</p>
+    </section>
+    <footer>
+        <p>
+            © 2026 NÖRKA — Diseño en movimiento
+        </p>
+    </footer>
+    <div class="social-float">
+        <a href="https://www.instagram.com/norka.dem?igsh=bjJlcTJmZjZnMno%3D" target="_blank">
+            <img src="../assets/icons8-instagram-48(1).png" alt="Instagram">
+        </a>
+        <a href="https://wa.me/5493885818044" target="_blank">
+            <img src="../assets/icons8-whatsapp-48.png" alt="WhatsApp">
+        </a>
+    </div>
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" alt="Imagen ampliada">
+    </div>
+    <script>
+        const productImages = document.querySelectorAll(".product-card img");
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const lightboxClose = document.querySelector(".lightbox-close");
+
+        productImages.forEach(img => {
+            img.addEventListener("click", () => {
+            lightbox.style.display = "flex";
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt || "Imagen ampliada";
+            document.body.style.overflow = "hidden";
+            });
+        });
+
+        lightboxClose.addEventListener("click", () => {
+            lightbox.style.display = "none";
+            document.body.style.overflow = "";
+        });
+
+        lightbox.addEventListener("click", (e) => {
+            if (e.target === lightbox) {
+            lightbox.style.display = "none";
+            document.body.style.overflow = "";
+            }
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+            lightbox.style.display = "none";
+            document.body.style.overflow = "";
+            }
+        });
+    </script>
+</body>
+</html>
