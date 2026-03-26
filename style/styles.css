@@ -41,6 +41,10 @@ position:relative;
   height: 96px;
 }
 
+.logo_cat img{
+height: 60px;
+}
+
 
 
 .nav-links{
@@ -405,18 +409,30 @@ transform:scale(1);
 
 /* GRID CATÁLOGO */
 
-.catalogo {
+#catalogo-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  padding: 60px 10%;
+  /* El secreto: minmax(320px, 1fr) hace que las cards no bajen de 320px 
+     pero que crezcan para llenar el espacio. Entrarán 3 o 4 según el monitor. */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+  gap: 30px;
+  padding: 0px 10%; /* Bajamos del 10% al 2% para ganar espacio lateral */
+  max-width: 100%;  /* Que use todo el ancho de la pantalla */
+  margin: 0 auto;
+  align-items: start;
 }
 
 
 /* CARD PRODUCTO */
 
+/*.product-card {
+  text-align: center;
+}*/
+
 .product-card {
   text-align: center;
+  background: #fff; /* Opcional: fondo blanco para que resalte del fondo gris */
+  border-radius: 8px;
+  padding-bottom: 15px;
 }
 
 .product-card img{
@@ -428,29 +444,33 @@ transform:scale(1);
   background:#f5f5f5;
   padding: 2px;
   transition:.3s;
+  cursor: zoom-in;
 }
+
 
 .product-card img:hover {
   transform: scale(1.03);
 }
 
 .product-card h3 {
-  margin-top: 15px;
-  letter-spacing: 2px;
+  letter-spacing: 0.5px;
+  font-size: 1.1rem;
+  text-transform: uppercase;
 }
 
 .product-card p {
   font-size: 14px;
   opacity: 0.7;
+  le
 }
 
 /* ===== TABLET ===== */
 @media (max-width: 1024px){
 
-  .catalogo{
-    grid-template-columns: repeat(2, 1fr);
+  #catalogo-container{
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
-    padding: 50px 5%;
+    padding: 0px 5%;
   }
 
 }
@@ -458,9 +478,46 @@ transform:scale(1);
 /* ===== MOBILE ===== */
 @media (max-width: 768px){
 
-  .catalogo{
-    grid-template-columns: 1fr;
-    padding: 40px 20px;
+  #catalogo-container{
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 0px 5px;
+  }
+
+  .product-card img{
+    height:auto;
+  }
+
+.product-card h3 {
+    margin-top: 8px;   /* Reducimos el salto entre imagen y título */
+    margin-bottom: 2px;
+    font-size: 0.85rem; /* Fuente más pequeña */
+    line-height: 1.1;  /* Altura de línea compacta */
+    letter-spacing: 0.3px; /* Menos espacio entre letras */
+  }
+
+  .product-card p {
+    font-size: 12px;   /* Texto de talle/info bien pequeño */
+    margin: 2px 0;     /* Casi sin margen arriba y abajo */
+    opacity: 0.8;
+  }
+}
+
+@media (max-width: 650px){
+
+  #catalogo-container{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 20px 10px;
+  }
+
+  .product-card img{
+    height:auto;
+  }
+
+  .product-card h3{
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
   }
 
 }
