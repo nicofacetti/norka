@@ -1,5 +1,5 @@
-// 1. CONFIGURACIÓN INICIAL
-const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSBGX0VLGKlV3Ld98VnAbeOXTdZka3NyHXhRO21YMdUidKMLnF1Eg1B1n47JBV22cLjbinzHSX-7fmX/pub?gid=0&single=true&output=csv"; // Recordá que debe ser la de "Publicar en la Web" como .csv
+// 1. CONFIGURACIÓN
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSBGX0VLGKlV3Ld98VnAbeOXTdZka3NyHXhRO21YMdUidKMLnF1Eg1B1n47JBV22cLjbinzHSX-7fmX/pub?output=csv"; // REEMPLAZA CON TU LINK DE CSV
 const RUTA_CARPETA_IMAGENES = "../assets/catalogo/";
 
 // 2. ELEMENTOS DEL DOM
@@ -9,55 +9,80 @@ const lightboxImg = document.getElementById('lightbox-img');
 const closeBtn = document.querySelector('.close-btn');
 
 /**
- * 3. FUNCIÓN: CARGAR DATOS DESDE GOOGLE SHEETS
+ * 3. CARGAR DATOS DESDE GOOGLE SHEETS
  */
 async function cargarDatosDesdeSheet() {
     Papa.parse(SHEET_URL, {
         download: true,
         header: true,
         complete: (results) => {
+            console.log("DATOS QUE LLEGAN DEL EXCEL:", results.data); 
+
             const datosSucios = results.data;
+
+
             const productosLimpios = datosSucios.map(fila => {
-            // 1. Tomamos el valor de la columna (ej: "$ 39.500,00")
-            let precioTexto = fila.Precio || "0";
+                // Limpieza de precio para evitar NaN
+                let precioTexto = fila.Precio || "0";
+                let sinDecimales = precioTexto.split(",")[0];
+                let precioLimpio = sinDecimales.replace(/[^\d]/g, "");
 
-            // 2. Cortamos el texto donde aparezca la coma para eliminar los centavos
-            // "39.500,00" se convierte en "39.500"
-            let sinDecimales = precioTexto.split(",")[0];
+                // Capturamos el estado (Disponible, Vendido, Reservado)
+                // Usamos toLowerCase() para que no importe si escribís "Vendido" o "vendido"
+                let estadoProducto = fila.Estado ? fila.Estado.toLowerCase().trim() : "disponible";
 
-            // 3. Ahora sí, quitamos todo lo que NO sea un número (puntos, símbolos, espacios)
-            // "39.500" se convierte en "39500"
-            let precioLimpio = sinDecimales.replace(/[^\d]/g, "");
-
-            return {
-                nombre: fila.Producto,
-                talle: fila.Talle,
-                precio: parseInt(precioLimpio) || 0,
-                imagen: `${RUTA_CARPETA_IMAGENES}${fila.Imagen}`
-            };
-        });
+                return {
+                    nombre: fila.Producto,
+                    talle: fila.Talle,
+                    precio: parseInt(precioLimpio) || 0,
+                    imagen: `${RUTA_CARPETA_IMAGENES}${fila.Imagen}`,
+                    estado: estadoProducto
+                };
+            });
 
             renderizarCatalogo(productosLimpios);
         },
         error: (err) => {
-            console.error("Error al parsear el CSV:", err);
+            console.error("Error al leer el Excel:", err);
         }
     });
 }
 
 /**
- * 4. FUNCIÓN: DIBUJAR EL CATÁLOGO EN EL HTML
+ * 4. RENDERIZAR EL CATÁLOGO
  */
 function renderizarCatalogo(lista) {
+    console.log("Cantidad de productos recibidos para dibujar:", lista.length);
     contenedor.innerHTML = "";
     
-    lista.forEach(prod => {
-        if (!prod.nombre) return; // Salta filas vacías si las hay en el Excel
+    if (lista.length === 0) {
+        contenedor.innerHTML = "<p>No se encontraron productos en el Excel.</p>";
+        return;
+    }
+
+    lista.forEach((prod, index) => {
+        // Log para ver si cada producto tiene los datos correctos
+        console.log(`Producto ${index}:`, prod);
+
+        if (!prod.nombre) {
+            console.warn(`El producto en el índice ${index} no tiene nombre y fue saltado.`);
+            return;
+        }
+
+        let etiquetaHTML = "";
+        if (prod.estado === "vendido" || prod.estado === "reservado") {
+            etiquetaHTML = `<div class="badge ${prod.estado}">${prod.estado.toUpperCase()}</div>`;
+        }
 
         const card = document.createElement("div");
         card.classList.add("product-card");
+        if (prod.estado !== "disponible") card.classList.add("no-disponible");
+
         card.innerHTML = `
-            <img src="${prod.imagen}" alt="${prod.nombre}" loading="lazy">
+            <div class="image-wrapper">
+                ${etiquetaHTML}
+                <img src="${prod.imagen}" alt="${prod.nombre}" loading="lazy">
+            </div>
             <div class="product-info">
                 <h3>${prod.nombre}</h3>
                 <p>Talle: ${prod.talle}</p>
@@ -71,7 +96,6 @@ function renderizarCatalogo(lista) {
 /**
  * 5. LÓGICA DEL LIGHTBOX (ZOOM)
  */
-// Abrir el zoom al hacer clic en cualquier imagen del contenedor
 contenedor.addEventListener('click', (e) => {
     if (e.target.tagName === 'IMG') {
         lightbox.style.display = 'flex';
@@ -80,25 +104,19 @@ contenedor.addEventListener('click', (e) => {
     }
 });
 
-// Función para cerrar el lightbox
 const cerrarLightbox = () => {
     lightbox.style.display = 'none';
 };
 
-// Cerrar con el botón X
-closeBtn.addEventListener('click', cerrarLightbox);
+if(closeBtn) closeBtn.addEventListener('click', cerrarLightbox);
 
-// Cerrar al hacer clic fuera de la imagen (en el fondo oscuro)
 lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-        cerrarLightbox();
-    }
+    if (e.target === lightbox) cerrarLightbox();
 });
 
-// Cerrar con la tecla Escape (opcional, muy profesional)
 document.addEventListener('keydown', (e) => {
     if (e.key === "Escape") cerrarLightbox();
 });
 
-// 6. INICIO
+// INICIO
 cargarDatosDesdeSheet();
