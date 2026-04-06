@@ -64,7 +64,7 @@ height: 60px;
 /* ===== HERO ===== */
 .hero {
   height: 90vh;
-  background-image: url("../assets/hero.png");
+  background-image: url("../assets/hero.jpg");
   background-size: cover;
   background-position: center;
   display: flex;
@@ -239,7 +239,22 @@ margin-left:auto;
   .menu-toggle{
   display:block;
   }
+
+  .hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  letter-spacing: 4px;
 }
+
+
+
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+}
+
+
 
 .lookbook {
   padding: 80px 10%;
