@@ -68,7 +68,7 @@ function renderizarCatalogo(lista) {
         let contenidoPrecio = "";
         if (prod.estado === "vendido") {
             // Si está vendido, mostramos la leyenda
-            contenidoPrecio = `<p class="precio-consulta">CONSULTAR</p>`;
+            contenidoPrecio = `<p class="precio-consulta">VENDIDO</p>`;
         } else {
             // Si está disponible o reservado, mostramos el precio
             contenidoPrecio = `<p class="precio">$${prod.precio.toLocaleString('es-AR')}</p>`;
