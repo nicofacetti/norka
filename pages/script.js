@@ -52,31 +52,36 @@ async function cargarDatosDesdeSheet() {
  * 4. RENDERIZAR EL CATÁLOGO
  */
 function renderizarCatalogo(lista) {
-    console.log("Cantidad de productos recibidos para dibujar:", lista.length);
+    const contenedor = document.querySelector("#catalogo-container");
     contenedor.innerHTML = "";
     
-    if (lista.length === 0) {
-        contenedor.innerHTML = "<p>No se encontraron productos en el Excel.</p>";
-        return;
-    }
+    lista.forEach(prod => {
+        if (!prod.nombre) return;
 
-    lista.forEach((prod, index) => {
-        // Log para ver si cada producto tiene los datos correctos
-        console.log(`Producto ${index}:`, prod);
-
-        if (!prod.nombre) {
-            console.warn(`El producto en el índice ${index} no tiene nombre y fue saltado.`);
-            return;
-        }
-
+        // 1. Lógica de etiquetas (Vendido / Reservado)
         let etiquetaHTML = "";
         if (prod.estado === "vendido" || prod.estado === "reservado") {
             etiquetaHTML = `<div class="badge ${prod.estado}">${prod.estado.toUpperCase()}</div>`;
         }
 
+        // 2. Lógica de Precio vs Consulta
+        let contenidoPrecio = "";
+        if (prod.estado === "vendido") {
+            // Si está vendido, mostramos la leyenda
+            contenidoPrecio = `<p class="precio-consulta">CONSULTAR</p>`;
+        } else {
+            // Si está disponible o reservado, mostramos el precio
+            contenidoPrecio = `<p class="precio">$${prod.precio.toLocaleString('es-AR')}</p>`;
+        }
+
+        // 3. Creación de la tarjeta
         const card = document.createElement("div");
         card.classList.add("product-card");
-        if (prod.estado !== "disponible") card.classList.add("no-disponible");
+        
+        // Si no está disponible, agregamos la clase para los efectos visuales
+        if (prod.estado !== "disponible") {
+            card.classList.add("no-disponible");
+        }
 
         card.innerHTML = `
             <div class="image-wrapper">
@@ -86,13 +91,12 @@ function renderizarCatalogo(lista) {
             <div class="product-info">
                 <h3>${prod.nombre}</h3>
                 <p>Talle: ${prod.talle}</p>
-                <p class="precio">$${prod.precio.toLocaleString('es-AR')}</p>
+                ${contenidoPrecio} 
             </div>
         `;
         contenedor.appendChild(card);
     });
 }
-
 /**
  * 5. LÓGICA DEL LIGHTBOX (ZOOM)
  */
